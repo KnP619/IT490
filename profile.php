@@ -1,14 +1,12 @@
 
 <?php
-include('login_session.php');
-
-
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
 <script>
 function logout(){
-window.location = "http://localhost/login/logout.php";
+window.location = "http://localhost/logout.php";
 
 };
 </script>
@@ -16,10 +14,11 @@ window.location = "http://localhost/login/logout.php";
 <title>User Dashboard</title>
 </head>
 <body>
-<div id="welcome">Welcome : <i><?php echo $user_check; ?></i> <br>
+<div id="welcome">Welcome : <i><?php echo $_SESSION["user_token"]; ?></i> <br>
 
 <button type="button" onclick="logout()">Change Content</button>
 
 </div>
 </body>
 </html>
+
