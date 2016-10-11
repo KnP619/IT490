@@ -29,10 +29,7 @@ function login($JsonCred) {
 		echo "<br>Rows: $rows <br>";
 		if ($rows == 1) //db returned true
 		{ 
-			//$_SESSION["user_token"] = $UserName;
-			//$user_check= $_SESSION["user_token"];				
-			//echo PHP_EOL. "UserCheck $: " . $_SESSION["user_token"];
-			//header("Location: profile.php");
+
 			return true;
 		}
 	else {
@@ -42,41 +39,7 @@ function login($JsonCred) {
 }
 					  
 
-					 
-	
-
-	/*if($_SESSION["user_token"] !== null){
-		$user_check=$_SESSION["user_token"];
-	//echo "User check: $user_check";
-	}
-	else{
-	// SQL Query To Fetch Complete Information Of User
-	$query=mysqli_query($dbconn, "select UserName from Login where UserName='$user_check'");
-	$row = mysqli_fetch_assoc($query);
-	echo"<br>" .PHP_EOL ."Row: $row";
-	$login_session =$row['UserName'];
-	echo "$login_session";
-
-	if(!isset($login_session)){
-	mysqli_close($dbconn); // Closing dbconn
-	header('Location: loginform.php'); // Redirecting To Home Page
-//echo "<br>$error";
-	}
-}*/
-
-
-
-/**
-if (is_array($JsonCred) || is_object($JsonCred))
-{
-    foreach ($JsonCred as $value)
-    {
-       echo "array value:\" $yarrr".PHP_EOL;
- 
-    }   
-	return($JsonCred);
 }
-**/}
 echo " [x] Awaiting RPC requests\n";
 $callback = function($req) {
 	$n = ($req->body);
