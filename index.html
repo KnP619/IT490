@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+<html>
 <script>
 function createRequestObject(){
         var ro;
@@ -18,11 +16,14 @@ var http = createRequestObject();
 //ajax requests
 function sendAjaxReq(){
 
-       teamList = document.getElementById("teamNames").value;
-        console.log(teamList);
+        UserName = document.getElementById("UserName").value;
+	     Password=document.getElementById("Password").value;
+        console.log(UserName);
+	     console.log(Password);
+	
 //      numCols = document.getElementById("Matches").name;
 //      console.log(numCols);
-        url= "fav_add.php?rows="+teamList+"&junk="+Math.random();
+        url= "login_client.php?UserName="+UserName+"&Password="+Password+"&junk="+Math.random();
 //      url = "hel.php?rows="+numRows+"&cols="+numCols+"&junk="+Math.random();        
         http.open('get', url);
         http.onreadystatechange = handleAjaxResponse;
@@ -33,50 +34,39 @@ function sendAjaxReq(){
 function handleAjaxResponse(){
         if( http.readyState == 4 ){   
         var response=http.responseText;
-        document.getElementById("subresult").innerHTML = response;
+        document.getElementById("login-result").innerHTML = response;
     }
 }
 
 </script>
-
-<html>
-
 <body>
-<link rel="stylesheet" href="login.css"/>
+<link rel="stylesheet" href="index.css"/>
 
-
-  <div id=logoutbutton>
-	  <a href="logout.php">Logout</a>
+<div id=loginbutton>
+<a href="registration.html">Registration</a>
 </div>
 
-<br><br>
-<br><br>
-<br><br>
-<br>
-<center><h2><?php echo "Welcome: " . $_SESSION['user_token']; ?>
-</h2></center>
 
-		   
+  <div class="container">
+  <form action = "login_client.php">
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="UserName" id="UserName"required>
+
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="Password" required id="Password">
+        
+    <center><button type="submit" value="submit">Login</button></center>
+	  <div id=login-result> </div>
+  </div>
+  </form>
+
 <div id=home>
 <a href="index.html">
 <center><img alt="home" src="logo.jpg" width="450" height="250"></center><br>
 </a>
 </div>
-<br><br>
-<br><br>
-	<center>
-		<label for="teamNames"> Team Names </label>
-	<select name="teamNames" id="teamNames">
-<?php 
-include ("teams.php");
-?>
-										  </select>
-		<input type=button id=favleagues name=favLeague value=subscribe onclick=sendAjaxReq()> <div id="subresult"></div></center>
-	
-	
-	
-<br><br>
-<br><br>
+
+<br><br><br><br>
 <div id=ligue1>
 <h1> Ligue 1</h1>
 <a href="ligue.html">
@@ -114,7 +104,6 @@ include ("teams.php");
 <br><br>
 <br><br>
 
-
 <div id=italian>
 <h1> Serie A</h1>
 <a href="italian.html">
@@ -127,4 +116,3 @@ include ("teams.php");
 
 </body>
 </html>
-

@@ -13,7 +13,7 @@ class RpcClient {
 	public function __construct() {
 
 		$this->connection = new AMQPStreamConnection(
-			'192.168.1.14', 5672, 'admin', 'knp33');
+			'localhost', 5672, 'admin', 'knp33');
 
 		$this->channel = $this->connection->channel();
 
@@ -52,7 +52,7 @@ public function call($n,$n1,$n2) {
 			      'reply_to' => $this->callback_queue)
 			);
 
-		$this->channel->basic_publish($msg, '', 'rpc_queue');
+		$this->channel->basic_publish($msg, '', 'rpc_queueL');
 
 		while(!$this->response) {
 			$this->channel->wait();
@@ -60,20 +60,22 @@ public function call($n,$n1,$n2) {
 		return ($this->response);
 	}
 };
-$fibonacci_rpc = new RpcClient();
+$login_rpc = new RpcClient();
 
-$response = $fibonacci_rpc->call($UserName,$Password, $submit);
-//$response = $fibonacci_rpc->call($FirstName);
-//$response = $fibonacci_rpc->call($LastName);
-//$response = $fibonacci_rpc->call($Email);
-//$response = $fibonacci_rpc->call($Password);
+$response = $login_rpc->call($UserName,$Password, $submit);
+//$response = $login_rpc->call($FirstName);
+//$response = $login_rpc->call($LastName);
+//$response = $login_rpc->call($Email);
+//$response = $login_rpc->call($Password);
 
 //echo "<html><br> [.] Got ", $response, "<br><br></html>\n";
+echo  "$response";
 if ($response == 1){
 //echo $_SERVER['REQUEST_URI'];
 	header("location:profile.php");
 }
 else {
-	echo "<html><br> <b> error: Invalid credentials </b> </br></html>"; //add a redirection page
+	//header("location:index.html");
+	echo "<html><br> <b> error: Invalid credentials </b> </br><a href=index.html>Go to home page</a></html>"; //add a redirection page
 }
 ?>
