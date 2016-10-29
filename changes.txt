@@ -1,8 +1,0 @@
-login.html -> login.php -> profile.php b/c confusing name and added subscription - added dropdown 
-index.html -> changed the name for login/password
-logout.html -> logout.php - added session_destory()
-subscription_be -> added user/team in a table for team tracking
-fav_add -> for rpc request to add user/team to the table
-Added new table
-
-CREATE TABLE `Soccer`.`Subscription` ( `id` INT NOT NULL AUTO_INCREMENT , `UserName` VARCHAR(100) NOT NULL , `TeamName` VARCHAR(100) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
