@@ -15,20 +15,38 @@ function subscription($n) {
      $UserName=$info[0];
 	echo "info: $info[1]" . PHP_EOL;
   	$TeamName=$info[1];
+	echo "info: $info[2]". PHP_EOL;
+	$LeagueName= $info[2];
+	$LeagueAcr = ""; 
+	if($LeagueName == '1. Bundesliga 2016/17'){
+		$LeagueAcr = 'B';
+	}
+	elseif($LeagueName == 'Serie A 2016/17'){
+		$LeagueAcr = 'S';
+	}
+	elseif($LeagueName == 'Primera Division 2016/17'){
+		$LeagueAcr = 'L';
+	}
+	elseif($LeagueName == 'Premier League 2016/17'){
+		$LeagueAcr = 'P';
+	}
+	elseif($LeagueName == 'Ligue 1 2016/17'){
+		$LeagueAcr = 'l';
+	}
 	$con =new  mysqli("localhost","root","knp33");
         if ($con->connect_error) {
         die("Connection failed:".$con->connect_error);
-}
-mysqli_select_db($con,"Soccer");
-$sql= "INSERT INTO `Subscription` (`UserName`, `TeamName`) VALUES ('$UserName','$TeamName')";
+	}
+	mysqli_select_db($con,"Soccer");
+	$sql= "INSERT INTO `Subscription` (`UserName`, `TeamName`, `LeagueName`, `LeagueAcr`) VALUES ('$UserName','$TeamName', '$LeagueName', '$LeagueAcr')";
 
-      if(mysqli_query($con,$sql)){
+     if(mysqli_query($con,$sql)){
 
              echo "<br><br>New record created successfully <br><br>" .PHP_EOL;
 		     return "Subscribed";
                                       }
 
-      else {
+     else {
 
             echo "Error: ".$sql."<br>".mysqli_error($con) . PHP_EOL;
 		    error_log("Something went wrong with subscribing". mysqli_error($con),3, "/var/log/php_erros.log");
