@@ -18,24 +18,48 @@ var http = createRequestObject();
 //ajax requests
 function sendAjaxReq(){
 
-       teamList = document.getElementById("teamNames").value;
-        console.log(teamList);
+        teamName = document.getElementById("getTeamNames").value;
+	    leagueName = document.getElementById("leagueName").value;
+        console.log(teamName);
 //      numCols = document.getElementById("Matches").name;
 //      console.log(numCols);
-        url= "fav_add.php?rows="+teamList+"&junk="+Math.random();
+        url="fav_add.php?TeamName="+teamName+"&LeagueName="+leagueName+"&junk="+Math.random();
 //      url = "hel.php?rows="+numRows+"&cols="+numCols+"&junk="+Math.random();        
         http.open('get', url);
         http.onreadystatechange = handleAjaxResponse;
         http.send(null);
 }
+	
+	
+	function getTeams(){
+
+        leagueName = document.getElementById("leagueName").value;
+        console.log(leagueName);
+//      numCols = document.getElementById("Matches").name;
+//      console.log(numCols);
+        url= "teams.php?League="+leagueName+"&junk="+Math.random();
+//      url = "hel.php?rows="+numRows+"&cols="+numCols+"&junk="+Math.random();        
+        http.open('get', url);
+        http.onreadystatechange = handleAjaxResponse2;
+        http.send(null);
+}
 //ajax response
+	function handleAjaxResponse2(){
+        if( http.readyState == 4 ){   
+        var response=http.responseText;
+		console.log(response);
+		//document.getElementById("getTeamNames").value = document.write(response);
+        document.getElementById("getTeamNames").innerHTML= response;
+    }
+}
 
 function handleAjaxResponse(){
         if( http.readyState == 4 ){   
         var response=http.responseText;
         document.getElementById("subresult").innerHTML = response;
     }
-}
+} 
+
 
 </script>
 
@@ -46,7 +70,7 @@ function handleAjaxResponse(){
 
 
   <div id=logoutbutton>
-	  <a href="logout.php">Logout</a>
+      <a href="logout.php">Logout</a>
 </div>
 
 <br><br>
@@ -56,7 +80,8 @@ function handleAjaxResponse(){
 <center><h2><?php echo "Welcome: " . $_SESSION['user_token']; ?>
 </h2></center>
 
-		   
+
+           
 <div id=home>
 <a href="index.html">
 <center><img alt="home" src="logo.jpg" width="450" height="250"></center><br>
@@ -64,17 +89,34 @@ function handleAjaxResponse(){
 </div>
 <br><br>
 <br><br>
-	<center>
-		<label for="teamNames"> Team Names </label>
-	<select name="teamNames" id="teamNames">
-<?php 
-include ("teams.php");
-?>
-										  </select>
-		<input type=button id=favleagues name=favLeague value=subscribe onclick=sendAjaxReq()> <div id="subresult"></div></center>
+<center>
+<div id=favteam>
+    <a href="userFavoriteTeam.php">Favorite Team</a>
+</div>
 	
+	<label for="leagueName">League Names</label>
+	<select name="leagueName" id="leagueName" onchange=getTeams()>
+		
+		<option> </option>
+		<option value="1. Bundesliga 2016/17"> Bundesliga </option>
+		<option value="Serie A 2016/17">SerieA </option>
+		<option value="Primera Division 2016/17"> LaLiga </option>
+		<option value="Premier League 2016/17"> PremierLeague </option>
+		<option value="Ligue 1 2016/17"> Ligue1 </option>
+        
+		<!--<span id="getTeamNames">LeagueNames </span> -->
+	</select>
 	
-	
+			<br><br>
+	<label for= "getTeamNames"> Team Names </label>
+    <select name="teamNames" id="getTeamNames">
+		<div id=getteams></div>                                          
+	</select>
+        <input type=button id=favleagues name=favLeague value=Subscribe onclick=sendAjaxReq()> 
+			<div id="subresult"></div></center>
+    
+    
+    
 <br><br>
 <br><br>
 <div id=ligue1>
