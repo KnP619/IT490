@@ -1,4 +1,8 @@
 <?php
+
+$League=$_GET["League"];
+
+if($League == '1. Bundesliga 2016/17'){
 echo "<optionv>FC Bayern MÃ¼nchen </option>";
 echo "<option> Red Bull Leipzig </option>";
 echo "<option>Hertha BSC</option>";
@@ -17,7 +21,8 @@ echo "<option>Werder Bremen</option>";
 echo "<option>VfL Wolfsburg</option>";
 echo "<option>FC Ingolstadt 04</option>";
 echo "<option>Hamburger SV</option>";
-
+}
+else if ($League == 'Ligue 1 2016/17'){
 echo "<option>OGC Nice</option>";
 echo "<option>AS Monaco FC</option>";
 echo "<option>Paris Saint-Germain</option>";
@@ -37,8 +42,10 @@ echo "<option>OSC Lille</option>";
 echo "<option>Montpellier HÃ©rault SC</option>";
 echo "<option>SM Caen</option>";
 echo "<option>AS Nancy</option>";
-echo "<option>FC Lorient</option>";
+echo "<option>FC Lorient</option>";}
 
+
+else if ($League == 'Premier League 2016/17'){
 echo "<option>Manchester City FC</option>";
 echo "<option>Arsenal FC</option>";
 echo "<option>Liverpool FC</option>";
@@ -58,8 +65,9 @@ echo "<option>Stoke City FC</option>";
 echo "<option>Middlesbrough FC</option>";
 echo "<option>Hull City FC</option>";
 echo "<option>Swansea City FC</option>";
-echo "<option>Sunderland AFC</option>";
+echo "<option>Sunderland AFC</option>";}
 
+else if ($League =="Primera Division 2016/17"){
 echo "<option>Real Madrid CF </option>";
 echo "<option>Sevilla FC</option>";
 echo "<option>FC Barcelona</option>";
@@ -80,7 +88,10 @@ echo "<option>RC Deportivo La Coruna</option>";
 echo "<option>Sporting GijÃ³n</option>";
 echo "<option>CA Osasuna</option>";
 echo "<option>Granada CF</option>";
+}
 
+
+else if ($League == 'Serie A 2016/17'){
 echo "<option>Juventus Turin</option>";
 echo "<option>AS Roma</option>";
 echo "<option>SSC Napoli</option>";
@@ -100,7 +111,7 @@ echo "<option>UC Sampdoria</option>";
 echo "<option>Pescara Calcio</option>";
 echo "<option>Empoli FC</option>";
 echo "<option>US CittÃ¡ di Palermo</option>";
-echo "<option>FC Crotone</option>";
+echo "<option>FC Crotone</option>";}
 ?>
 
 
