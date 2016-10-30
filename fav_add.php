@@ -5,7 +5,8 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 session_start();
 $UserName = $_SESSION['user_token'];
-$TeamName=$_GET["rows"];
+$TeamName=$_GET["TeamName"];
+$LeagueName= $_GET["LeagueName"];
 
 class SubsRpcClient {
     private $connection;
@@ -50,6 +51,7 @@ class SubsRpcClient {
 $subsUser= array();
 $subUser[0]=$UserName;
 $subUser[1]=$TeamName;
+$subUser[2]=$LeagueName;
 $subUser1=json_encode($subUser);
 $subs_rpc = new SubsRpcClient();
 $response = $subs_rpc->call($subUser1);
