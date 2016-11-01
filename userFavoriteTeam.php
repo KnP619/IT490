@@ -1,8 +1,8 @@
 <?php
 session_start();
 $UserName = $_SESSION['user_token'];
-$_SESSION['Pos'] = "$UserName" . " asdf";
-$Pos= $_SESSION['Pos'];
+//$_SESSION['Pos'] = "$UserName" . " asdf";
+//$Pos= $_SESSION['Pos'];
 //array_push($_SESSION['Fav'], "$UserName", 'asdf');
 //echo "<br><center> ".var_dump($_SESSION['Fav'])." </center>";
 //$Pos[0] = $UserName;
