@@ -12,7 +12,7 @@ class FibonacciRpcClient {
 
     public function __construct() {
         $this->connection = new AMQPStreamConnection(
-            'localhost', 5672, 'admin', 'knp33');
+            '10.200.44.195', 5672, 'admin', 'asdf');
         $this->channel = $this->connection->channel();
         list($this->callback_queue, ,) = $this->channel->queue_declare(
             "", false, false, true, false);
@@ -44,12 +44,12 @@ class FibonacciRpcClient {
 };
 
 $Deploy_Req=array();
-$Deploy_Req[0]='installer';
-$Deploy_Req[1]=$argv[1]; //Name of tar.gz //Name of task
+$Deploy_Req[0]=$argv[1]; //installer or rollback
+$Deploy_Req[1]=$argv[2]; //Name of tar.gz //Name of task
 //$Deploy_Req[2] = $argv[2]; //Name of task
-if($argv[1] == NULL OR $argc != 2){
+if($argv[1] == NULL OR $argv[2] == NULL OR $argc != 3){
 	//echo "Usage: php install.php </path/to/my.tar.gz> <taskName>" . PHP_EOL;
-	echo "Usage: php install.php <taskName>" . PHP_EOL;
+	echo "Usage: php install.php <installer/rollback> <taskName>" . PHP_EOL;
 	die();
 }
 $Deploy_Req_Final=json_encode($Deploy_Req);
